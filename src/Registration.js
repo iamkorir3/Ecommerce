@@ -4,9 +4,16 @@ export default function Registration() {
   const [userEmail, setUserEmail] = useEffect();
   const [userPhoneNum, setUserPhoneNum] = useEffect();
 
-  function handleOnsubmit(email) {
+  function handleOnsubmit(e) {
     console.log("reacgede");
-    setUserEmail(email);
+    e.preventDefault();
+
+    if (!userEmail || !userPhoneNum) return;
+
+    const createUser = {
+      userEmail,
+      userPhoneNum,
+    };
   }
 
   return (
@@ -26,21 +33,12 @@ function Form({ userEmail, userPhoneNum, Onsubmission }) {
       <label for email>
         Enter your email
       </label>
-      <input
-        type="email"
-        value={userEmail}
-        onChange={(e) => setUserEmail(e.target.value)}
-      />
+      <input type="email" value={userEmail} />
 
       <label for phoneNUmber>
         Enter your Phone number
       </label>
-      <input
-        type="number"
-        name="phoneNUmber"
-        value={userPhoneNum}
-        onChange={(e) => setUserPhoneNum(e.target.value)}
-      />
+      <input type="number" name="phoneNUmber" value={userPhoneNum} />
 
       <button type="submit">submit</button>
     </form>
