@@ -4,31 +4,25 @@ export default function Registration() {
   const [userEmail, setUserEmail] = useEffect();
   const [userPhoneNum, setUserPhoneNum] = useEffect();
 
-  function handleUserEmail(email) {
+  function handleOnsubmit(email) {
     console.log("reacgede");
     setUserEmail(email);
-  }
-
-  function handleUserPhoneNum(number) {
-    console.log("reacgede");
-    setUserEmail(number);
   }
 
   return (
     <div className="registration_container">
       <Form
         userEmail={userEmail}
-        setUserEmail={handleUserEmail}
+        Onsubmission={handleOnsubmit}
         userPhoneNum={userPhoneNum}
-        setUserPhoneNum={handleUserPhoneNum}
       />
     </div>
   );
 }
 
-function Form({ userEmail, setUserEmail, userPhoneNum, setUserPhoneNum }) {
+function Form({ userEmail, userPhoneNum, Onsubmission }) {
   return (
-    <form className="regis_form">
+    <form className="regis_form" onSubmit={Onsubmission}>
       <label for email>
         Enter your email
       </label>
