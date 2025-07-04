@@ -1,6 +1,20 @@
 import { useEffect } from "react";
 
 export default function Registration() {
+  const [user, setUser] = useEffect();
+
+  return (
+    <div className="registration_container">
+      <Form
+        userEmail={userEmail}
+        Onsubmission={handleOnsubmit}
+        userPhoneNum={userPhoneNum}
+      />
+    </div>
+  );
+}
+
+function Form({ userEmail, userPhoneNum, Onsubmission }) {
   const [userEmail, setUserEmail] = useEffect();
   const [userPhoneNum, setUserPhoneNum] = useEffect();
 
@@ -15,19 +29,6 @@ export default function Registration() {
       userPhoneNum,
     };
   }
-
-  return (
-    <div className="registration_container">
-      <Form
-        userEmail={userEmail}
-        Onsubmission={handleOnsubmit}
-        userPhoneNum={userPhoneNum}
-      />
-    </div>
-  );
-}
-
-function Form({ userEmail, userPhoneNum, Onsubmission }) {
   return (
     <form className="regis_form" onSubmit={Onsubmission}>
       <label for email>
