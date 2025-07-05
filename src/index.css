@@ -98,3 +98,51 @@ html {
   text-align: center;
   font-size: 2.5rem;
 }
+
+/* *****************
+NAVIGATION 
+*****************/
+.nav_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 2rem;
+  background-color: rgb(243, 227, 192);
+}
+
+.nav_btn {
+  background-color: inherit;
+  color: black;
+  border: none;
+  display: flex;
+  align-items: center;
+}
+
+.nav_btn span {
+  font-size: 1.8rem;
+}
+
+[name="menu-outline"],
+[name="cart-outline"],
+[name="person-outline"] {
+  border: none;
+  color: black;
+  font-size: 3rem;
+  padding: 0;
+  background-color: inherit;
+}
+.search input {
+  width: 26rem;
+  height: 3rem;
+  border: none;
+}
+
+.search button {
+  color: white;
+  background-color: rgb(187, 139, 36);
+  height: 3rem;
+  padding: 0 8px;
+  border: none;
+  border-radius: 4px;
+  margin-left: 1rem;
+}
