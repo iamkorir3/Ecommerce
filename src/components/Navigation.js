@@ -1,14 +1,17 @@
 export default function Navigation() {
   return (
-    <div className="nav_container">
-      <button className="nav_btn">
-        <ion-icon name="menu-outline"></ion-icon>
-      </button>
-      <Logo />
-      <SearchBar />
-      <Profile />
-      <Cart />
-    </div>
+    <>
+      <div className="nav_container">
+        <button className="nav_btn">
+          <ion-icon name="menu-outline"></ion-icon>
+        </button>
+        <Logo />
+        <SearchBar />
+        <Profile />
+        <Cart />
+      </div>
+      <SideMenu />
+    </>
   );
 }
 
@@ -46,6 +49,19 @@ function Cart() {
       <button className="nav_btn">
         <ion-icon name="cart-outline"></ion-icon> <span>Cart</span>
       </button>
+    </div>
+  );
+}
+
+function SideMenu() {
+  return (
+    <div className="menu">
+      <button>Korir btn</button>
+      <button>Korir btn</button>
+      <button>Korir btn</button>
+      <button>Korir btn</button>
+      <button>Korir btn</button>
+      <button>Korir btn</button>
     </div>
   );
 }

@@ -146,6 +146,21 @@ NAVIGATION
   border-radius: 4px;
   margin-left: 1rem;
 }
+
+/* ***************
+MENU
+ */
+.menu {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}
+
+.menu button {
+  padding: 1rem 3rem;
+  border: none;
+}
+
 /* **************
 prom
  */
