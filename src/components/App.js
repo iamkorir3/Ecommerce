@@ -6,8 +6,8 @@ export default function App() {
   return (
     <div className="">
       {/* <Registration /> */}
-      {/* <Navigation /> */}
-      <Prom />
+      <Navigation />
+      {/* <Prom /> */}
     </div>
   );
 }

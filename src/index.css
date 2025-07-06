@@ -185,3 +185,24 @@ prom
   font-size: 1.8rem;
   margin: 0;
 }
+
+.promtext {
+  padding: 4rem;
+}
+
+.promtext p {
+  font-size: 1.6rem;
+  color: rgba(0, 0, 0, 0.711);
+}
+
+.promtext img {
+  width: 34rem;
+}
+
+.btn_apply {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 2rem;
+  border-radius: 10px;
+  background-color: rgb(68, 255, 47);
+}
