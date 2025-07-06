@@ -153,12 +153,15 @@ MENU
 .menu {
   display: flex;
   flex-direction: column;
-  width: fit-content;
+  background-color: rgb(216, 169, 107);
+  width: 20rem;
 }
 
 .menu button {
   padding: 1rem 3rem;
   border: none;
+  font-weight: 550;
+  background-color: inherit;
 }
 
 /* **************
