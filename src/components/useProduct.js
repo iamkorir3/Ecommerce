@@ -1,13 +1,6 @@
-import { useEffect, useState } from "react";
-const initialclothes = [
-  {
-    img: "src",
-    gender: "men",
-    size: "24",
-  },
-];
+import { useState, useEffect } from "react";
 
-export default function Productimg() {
+export default function useProduct({ img, description }) {
   const [clothes, setClothes] = useState([]);
 
   useEffect(function () {
