@@ -13,20 +13,20 @@ export default function useProduct({ img, description }) {
     getClothe();
   }, []);
 
-  useEffect(function () {
-    async function getClothes() {
-      try {
-        const res = await fetch("https://fakestoreapi.com/products/1");
-        if (!res.ok) throw new Error("something went wrong");
-        const data = await res.json();
+  //   useEffect(function () {
+  //     async function getClothes() {
+  //       try {
+  //         const res = await fetch("https://fakestoreapi.com/products/1");
+  //         if (!res.ok) throw new Error("something went wrong");
+  //         const data = await res.json();
 
-        setClothes(data || []);
-      } catch (err) {
-        console.log(err.message);
-      }
-    }
-    getClothes();
-  }, []);
+  //         setClothes(data || []);
+  //       } catch (err) {
+  //         console.log(err.message);
+  //       }
+  //     }
+  //     getClothes();
+  //   }, []);
   console.log(clothes);
   return { clothes };
 }
