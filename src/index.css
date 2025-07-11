@@ -230,12 +230,58 @@ styling products
 *************** */
 .products {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  max-width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.container_prod {
+  max-width: 137.5rem;
+
+  margin: 0 auto;
+  margin-left: 4rem;
+  /* background-color: rgb(47, 71, 255); */
+}
+
+.product {
+  max-width: 20rem;
+  padding: 2rem;
+  position: relative;
+  /* background-color: greenyellow; */
 }
 .imagesize {
-  width: 20rem;
+  max-width: 20rem;
 }
 
 .product_description {
   font-size: 14px;
+}
+
+.btn_addtocart {
+  width: 100%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 3.2rem;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(234, 174, 96);
+  /* align-self: baseline; */
+}
+
+.price {
+}
+
+.like {
+  position: absolute;
+  right: 0rem;
+  border: none;
+  font-size: 2rem;
+  background-color: white;
+  color: rgb(255, 136, 0);
+}
+.ratings {
 }

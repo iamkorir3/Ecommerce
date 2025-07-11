@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import StarRating from "./StarRating";
 const initialclothes = [
   {
     image: "src",
@@ -19,16 +20,6 @@ const initialclothes = [
 export default function Productimg() {
   const [clothes, setClothes] = useState([]);
 
-  //   useEffect(function () {
-  //     async function getClothe() {
-  //       fetch("https://fakestoreapi.com/products/1")
-  //         .then((res) => res.json())
-  //         .then((json) => setClothes(json));
-  //       // .then(setClothes(res.Search || [initialclothes]));
-  //     }
-  //     getClothe();
-  //   }, []);
-
   useEffect(function () {
     async function getClothes() {
       try {
@@ -46,18 +37,26 @@ export default function Productimg() {
   console.log(clothes);
   //   const { img, description } = clothes;
   return (
-    <div className="products">
-      {clothes.map((clothe) => (
-        <div key={clothe.id}>
-          <h4>{clothe.title}</h4>
-          <img src={clothe.image} className="imagesize" alt="meinc" />
-          <span>
-            {clothe.rating.rate} from {clothe.rating.count} people
-          </span>
-          <span>{clothe.price} USD</span>
-          <p className="product_description">{clothe.description}</p>
-        </div>
-      ))}
+    <div className="container_prod">
+      <div className="products">
+        {clothes.map((clothe) => (
+          <div key={clothe.id} className="product">
+            <h4>{clothe.title}</h4>
+            <img src={clothe.image} className="imagesize" alt="meinc" />
+            <button className="like">
+              <ion-icon name="heart-outline"></ion-icon>
+            </button>
+            <span className="ratings">
+              <strong> {clothe.rating.rate} ⭐</strong> from{" "}
+              {clothe.rating.count} people
+            </span>
+            <span className="price">{clothe.price} USD</span>
+            {/* <p className="product_description">{clothe.description}</p> */}
+            <StarRating />
+            <button className="btn_addtocart">Add to Cart</button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
