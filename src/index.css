@@ -224,3 +224,18 @@ prom
   border-radius: 10px;
   background-color: rgb(68, 255, 47);
 }
+
+/* ************
+styling products
+*************** */
+.products {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.imagesize {
+  width: 20rem;
+}
+
+.product_description {
+  font-size: 14px;
+}

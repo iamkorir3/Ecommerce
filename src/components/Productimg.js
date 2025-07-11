@@ -17,7 +17,7 @@ const initialclothes = [
 ];
 
 export default function Productimg() {
-  const [clothes, setClothes] = useState([initialclothes]);
+  const [clothes, setClothes] = useState([]);
 
   //   useEffect(function () {
   //     async function getClothe() {
@@ -32,7 +32,7 @@ export default function Productimg() {
   useEffect(function () {
     async function getClothes() {
       try {
-        const res = await fetch("https://fakestoreapi.com/products/1");
+        const res = await fetch("https://fakestoreapi.com/products");
         if (!res.ok) throw new Error("something went wrong");
         const data = await res.json();
 
@@ -46,11 +46,16 @@ export default function Productimg() {
   console.log(clothes);
   //   const { img, description } = clothes;
   return (
-    <div>
+    <div className="products">
       {clothes.map((clothe) => (
-        <div>
-          <img src={clothe.image} alt="meinc" />
-          <p>{clothe.description}</p>
+        <div key={clothe.id}>
+          <h4>{clothe.title}</h4>
+          <img src={clothe.image} className="imagesize" alt="meinc" />
+          <span>
+            {clothe.rating.rate} from {clothe.rating.count} people
+          </span>
+          <span>{clothe.price} USD</span>
+          <p className="product_description">{clothe.description}</p>
         </div>
       ))}
     </div>
