@@ -5,22 +5,23 @@ import Productimg from "./Productimg";
 // import Prom from "./prom";
 
 export default function App() {
-  const { clothes } = Productimg();
-  console.log(clothes);
+  // const { clothes } = useProduct();
+
   return (
     <div className="">
       {/* <Registration /> */}
       {/* <Navigation /> */}
       {/* <Prom /> */}
       <Productimg />
-      {clothes?.map((clothe) => (
+      {/* {clothes?.map((clothe) => (
         <CreateProduct img={clothe.image} description={clothe.description} />
-      ))}
+      ))} */}
     </div>
   );
 }
 
 function CreateProduct({ img, description }) {
+  console.log(description);
   return (
     <div>
       <img src={img} alt={description} />
