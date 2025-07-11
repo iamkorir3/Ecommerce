@@ -53,6 +53,7 @@ export default function Productimg() {
             <span className="price">{clothe.price} USD</span>
             {/* <p className="product_description">{clothe.description}</p> */}
             <StarRating />
+            <span style={{ opacity: "0" }}>height</span>
             <button className="btn_addtocart">Add to Cart</button>
           </div>
         ))}
