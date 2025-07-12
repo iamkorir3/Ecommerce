@@ -4,6 +4,13 @@ export default function Prom() {
   const [home, setHome] = useState(true);
   const [hometwo, setHometwo] = useState(false);
   const [register, setRegister] = useState(false);
+  const [land, setLand] = useState(false);
+  const [users, setUsers] = useState([]);
+
+  function createUser(user) {
+    setUsers((user) => [...users, user]);
+    console.log(user.userEmail);
+  }
 
   function handleSetHome() {
     setHome(false);
@@ -13,6 +20,11 @@ export default function Prom() {
   function handleRegistration() {
     setRegister(true);
     setHometwo(false);
+  }
+
+  function handleLnding() {
+    setRegister(false);
+    setLand(true);
   }
 
   return (
@@ -57,8 +69,13 @@ export default function Prom() {
       </div>
 
       <ChoosingOption home={hometwo} onregister={handleRegistration} />
-      <Registration register={register} setRegister={setRegister} />
-      <LandingPage />
+      <Registration
+        register={register}
+        setRegister={setRegister}
+        onland={handleLnding}
+        createUser={createUser}
+      />
+      <LandingPage land={land} />
     </div>
   );
 }
@@ -87,14 +104,7 @@ function ChoosingOption({ home, onregister }) {
   );
 }
 
-function Registration({ register, setRegister }) {
-  const [users, setUsers] = useState([]);
-
-  function createUser(user) {
-    setUsers((user) => [...users, user]);
-    console.log(user.userEmail);
-  }
-
+function Registration({ register, setRegister, onland, createUser }) {
   return (
     <>
       {register ? (
@@ -103,6 +113,7 @@ function Registration({ register, setRegister }) {
             Onsubmission={createUser}
             register={register}
             setRegister={setRegister}
+            onland={onland}
           />
         </div>
       ) : (
@@ -112,7 +123,7 @@ function Registration({ register, setRegister }) {
   );
 }
 
-function Form({ register, setRegister, Onsubmission }) {
+function Form({ register, setRegister, Onsubmission, onsetName, onland }) {
   const [userEmail, setUserEmail] = useState("");
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
@@ -121,7 +132,6 @@ function Form({ register, setRegister, Onsubmission }) {
   const [userPhoneNum, setUserPhoneNum] = useState("");
   const [noData, setnoData] = useState(false);
   const [noNumber, setnoNumber] = useState(false);
-  const [land, setLand] = useState(false);
 
   // function hi() {
   //   userPhoneNum.length > 0 ? setnoNumber(true) : setnoNumber(false);
@@ -140,18 +150,17 @@ function Form({ register, setRegister, Onsubmission }) {
     }
 
     const createUser = {
+      name,
+      age,
       userEmail,
+      country,
       userPhoneNum,
     };
-
+    console.log(createUser);
     Onsubmission(createUser);
-    handleLnding();
+    onland();
   }
 
-  function handleLnding() {
-    setRegister(false);
-    setLand(true);
-  }
   return (
     <>
       <form className="regis_form" onSubmit={handleOnsubmit}>
@@ -214,22 +223,29 @@ function Form({ register, setRegister, Onsubmission }) {
   );
 }
 
-function LandingPage({ name }) {
+function LandingPage({ land, name }) {
   return (
-    <div className="landing_page">
-      <ProfileCusto />
-      <h6>
-        {name} Congratulations for Creating Account Succefully you are Ready to
-        start application{" "}
-      </h6>
-      {/* <h4> Welcome {name} you are Ready to start applicatio </h4> */}
-      <p>
-        Your have been reqistered <strong>successfully</strong> in our funding
-        Programme. Now you are required to answer few questions,and at the end
-        you are required to choose the amount of Funds that you need, Thank You.
-      </p>
-      <button>Start Questions</button>
-    </div>
+    <>
+      {land ? (
+        <div className="landing_page">
+          <ProfileCusto />
+          <h6>
+            {name} Congratulations for Creating Account Succefully you are Ready
+            to start application{" "}
+          </h6>
+          {/* <h4> Welcome {name} you are Ready to start applicatio </h4> */}
+          <p>
+            Your have been reqistered <strong>successfully</strong> in our
+            funding Programme. Now you are required to answer few questions,and
+            at the end you are required to choose the amount of Funds that you
+            need, Thank You.
+          </p>
+          <button>Start Questions</button>
+        </div>
+      ) : (
+        ""
+      )}
+    </>
   );
 }
 
@@ -242,7 +258,7 @@ function ProfileCusto({ name }) {
         </div>
         <h2>{name} hello</h2>
       </div>
-      <p>Congratulations your Account is Ready</p>
+      <p>Welcome your Account is Ready</p>
     </div>
   );
 }
