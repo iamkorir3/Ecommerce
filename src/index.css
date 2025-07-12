@@ -294,6 +294,14 @@ body {
 .custoprof h2 {
   font-size: 2rem;
 }
+
+.custoprof h2 span {
+  color: rgb(43, 199, 43);
+  font-weight: 600;
+  margin: 1.5rem;
+
+  /* background-color: rebeccapurple; */
+}
 .custo_container p {
   font-size: 1.8rem;
 }

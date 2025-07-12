@@ -1,16 +1,25 @@
 import { useState } from "react";
 
+const questions = [
+  {
+    quiz: "Which line are you using in this Application",
+    option: ["1.MTN", "2.AIRTEL"],
+    id: 1,
+  },
+];
+
 export default function Prom() {
   const [home, setHome] = useState(true);
   const [hometwo, setHometwo] = useState(false);
   const [register, setRegister] = useState(false);
   const [land, setLand] = useState(false);
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState({});
 
   function createUser(user) {
-    setUsers((user) => [...users, user]);
-    console.log(user.userEmail);
+    setUsers(user);
+    // setUsers((user) => [...users, user]);
   }
+  // console.log(users.userEmail);
 
   function handleSetHome() {
     setHome(false);
@@ -75,7 +84,7 @@ export default function Prom() {
         onland={handleLnding}
         createUser={createUser}
       />
-      <LandingPage land={land} />
+      <LandingPage land={land} custoName={users} />
     </div>
   );
 }
@@ -156,7 +165,7 @@ function Form({ register, setRegister, Onsubmission, onsetName, onland }) {
       country,
       userPhoneNum,
     };
-    console.log(createUser);
+
     Onsubmission(createUser);
     onland();
   }
@@ -212,10 +221,10 @@ function Form({ register, setRegister, Onsubmission, onsetName, onland }) {
           value={country}
           onChange={(e) => setCountry(e.target.value)}
         >
-          <option>Zambia</option>
-          <option>Kenya</option>
-          <option>Tanzania</option>
-          <option>Uganda</option>
+          <option value="Zambia">Zambia</option>
+          <option value="Kenya">Kenya</option>
+          <option value="Tanzania">Tanzania</option>
+          <option value="Uganda">Uganda</option>
         </select>
         <button type="submit">Continue</button>
       </form>
@@ -223,15 +232,17 @@ function Form({ register, setRegister, Onsubmission, onsetName, onland }) {
   );
 }
 
-function LandingPage({ land, name }) {
+function LandingPage({ land, custoName }) {
+  const { name, age, country } = custoName;
+  // console.log(name);
   return (
     <>
       {land ? (
         <div className="landing_page">
-          <ProfileCusto />
+          <ProfileCusto name={name} country={country} />
           <h6>
-            {name} Congratulations for Creating Account Succefully you are Ready
-            to start application{" "}
+            Congratulations for Creating Account Succefully you are Ready to
+            start application{" "}
           </h6>
           {/* <h4> Welcome {name} you are Ready to start applicatio </h4> */}
           <p>
@@ -249,14 +260,19 @@ function LandingPage({ land, name }) {
   );
 }
 
-function ProfileCusto({ name }) {
+function ProfileCusto({ name, country }) {
   return (
     <div className="custo_container">
       <div className="custoprof">
         <div className="profilecusto">
           <ion-icon name="person-circle-outline"></ion-icon>
         </div>
-        <h2>{name} hello</h2>
+        <h2>
+          {name} , Country: {country}.
+          <span>
+            <ion-icon name="checkmark-circle-outline"></ion-icon>
+          </span>
+        </h2>
       </div>
       <p>Welcome your Account is Ready</p>
     </div>
