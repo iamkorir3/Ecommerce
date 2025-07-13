@@ -3,12 +3,18 @@ import { useState } from "react";
 const questions = [
   {
     quiz: "Which line are you using in this Application",
-    option: ["1.MTN", "2.AIRTEL"],
+    option: ["1.MTN", "2.AIRTEL", "Tigo", "Safaricom"],
     id: 1,
   },
   {
-    quiz: "Which line are you using in this Application",
-    option: ["1.MTN", "2.AIRTEL"],
+    quiz: "ACCORDING TO OUR ORGANIZATION OFFER WHAT WILL PLAN WITH OUR FUNDS🇺🇸",
+    option: [
+      "1.Emergencies",
+      "2.Start a business",
+      "3.Pay debts",
+      "4.Pay school fees",
+      "Others",
+    ],
     id: 2,
   },
   {
@@ -23,6 +29,7 @@ export default function Prom() {
   const [hometwo, setHometwo] = useState(false);
   const [register, setRegister] = useState(false);
   const [land, setLand] = useState(false);
+  const [landd, setLandd] = useState(true);
   const [users, setUsers] = useState({});
 
   function createUser(user) {
@@ -44,6 +51,10 @@ export default function Prom() {
   function handleLnding() {
     setRegister(false);
     setLand(true);
+  }
+
+  function handleLand() {
+    setLandd(false);
   }
 
   return (
@@ -94,7 +105,14 @@ export default function Prom() {
         onland={handleLnding}
         createUser={createUser}
       />
-      <LandingPage land={land} custoName={users} />
+      <LandingPage
+        land={land}
+        landd={landd}
+        onlandd={handleLand}
+        custoName={users}
+      >
+        <Quizes />
+      </LandingPage>
     </div>
   );
 }
@@ -242,7 +260,7 @@ function Form({ register, setRegister, Onsubmission, onsetName, onland }) {
   );
 }
 
-function LandingPage({ land, custoName }) {
+function LandingPage({ land, landd, onlandd, custoName }) {
   const { name, age, country } = custoName;
   // console.log(name);
   return (
@@ -250,19 +268,25 @@ function LandingPage({ land, custoName }) {
       {land ? (
         <div className="landing_page">
           <ProfileCusto name={name} country={country} />
-          <h6>
-            Congratulations for Creating Account Succefully you are Ready to
-            start application{" "}
-          </h6>
-          {/* <h4> Welcome {name} you are Ready to start applicatio </h4> */}
-          <p>
-            Your have been reqistered <strong>successfully</strong> in our
-            funding Programme. Now you are required to answer few questions,and
-            at the end you are required to choose the amount of Funds that you
-            need, Thank You.
-          </p>
-          <button>Start Questions</button>
-          <Quizes />
+          {landd ? (
+            <>
+              {" "}
+              <h6>
+                Congratulations for Creating Account Succefully you are Ready to
+                start application{" "}
+              </h6>
+              {/* <h4> Welcome {name} you are Ready to start applicatio </h4> */}
+              <p>
+                Your have been reqistered <strong>successfully</strong> in our
+                funding Programme. Now you are required to answer few
+                questions,and at the end you are required to choose the amount
+                of Funds that you need, Thank You.
+              </p>
+              <button onClick={onlandd}>Start Questions</button>
+            </>
+          ) : (
+            <Quizes />
+          )}
         </div>
       ) : (
         ""
@@ -291,17 +315,39 @@ function ProfileCusto({ name, country }) {
 }
 
 function Quizes() {
+  const [currentId, setCurrentId] = useState(1);
+
+  function handleCurrentID() {
+    setCurrentId(currentId + 1);
+  }
   return (
-    <div>
-      {questions.map((quiz) => (
-        <div key={quiz.id}>
-          {console.log(quiz)}; hello
-          <h4>{quiz.question}</h4>
-          {quiz.option.map((opt) => (
-            <button>{opt}</button>
-          ))}
-        </div>
-      ))}
+    <div className="myQuizes">
+      {questions.map((quiz) =>
+        quiz.id === currentId ? (
+          <div key={quiz.id}>
+            <h4>{quiz.quiz}</h4>
+            {quiz.option.map((opt) => (
+              <button>{opt}</button>
+            ))}
+          </div>
+        ) : (
+          ""
+        )
+      )}
+      <button
+        onClick={handleCurrentID}
+        className="btn_next"
+        style={{
+          backgroundColor: "rgb(11, 11, 45)",
+          color: "white",
+          width: "8rem",
+          fontWeight: "bold",
+          marginLeft: "74%",
+          alignSelf: "right",
+        }}
+      >
+        Next
+      </button>
     </div>
   );
 }
