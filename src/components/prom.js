@@ -6,6 +6,16 @@ const questions = [
     option: ["1.MTN", "2.AIRTEL"],
     id: 1,
   },
+  {
+    quiz: "Which line are you using in this Application",
+    option: ["1.MTN", "2.AIRTEL"],
+    id: 2,
+  },
+  {
+    quiz: "Which line are you using in this Application",
+    option: ["1.MTN", "2.AIRTEL"],
+    id: 3,
+  },
 ];
 
 export default function Prom() {
@@ -252,6 +262,7 @@ function LandingPage({ land, custoName }) {
             need, Thank You.
           </p>
           <button>Start Questions</button>
+          <Quizes />
         </div>
       ) : (
         ""
@@ -283,8 +294,12 @@ function Quizes() {
   return (
     <div>
       {questions.map((quiz) => (
-        <div>
+        <div key={quiz.id}>
+          {console.log(quiz)}; hello
           <h4>{quiz.question}</h4>
+          {quiz.option.map((opt) => (
+            <button>{opt}</button>
+          ))}
         </div>
       ))}
     </div>
