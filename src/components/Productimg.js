@@ -19,6 +19,7 @@ const initialclothes = [
 
 export default function Productimg() {
   const [clothes, setClothes] = useState([]);
+  const [showADD, setshowADD] = useState(false);
 
   useEffect(function () {
     async function getClothes() {
@@ -34,13 +35,17 @@ export default function Productimg() {
     }
     getClothes();
   }, []);
-  console.log(clothes);
+
+  function showAddToCart() {
+    setshowADD(!showADD);
+  }
+  //   console.log(clothes);
   //   const { img, description } = clothes;
   return (
     <div className="container_prod">
       <div className="products">
         {clothes.map((clothe) => (
-          <div key={clothe.id} className="product">
+          <div key={clothe.id} className="product" onMouseEnter={showAddToCart}>
             <h4>{clothe.title}</h4>
             <img src={clothe.image} className="imagesize" alt="meinc" />
             <button className="like">
@@ -54,7 +59,10 @@ export default function Productimg() {
             {/* <p className="product_description">{clothe.description}</p> */}
             <StarRating />
             <span style={{ opacity: "0" }}>height</span>
-            <button className="btn_addtocart">Add to Cart</button>
+
+            <button className={`btn_addtocart ${showADD ? "" : "opac"}`}>
+              Add to Cart
+            </button>
           </div>
         ))}
       </div>

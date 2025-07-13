@@ -279,6 +279,18 @@ function ProfileCusto({ name, country }) {
   );
 }
 
+function Quizes() {
+  return (
+    <div>
+      {questions.map((quiz) => (
+        <div>
+          <h4>{quiz.question}</h4>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function RegistrationLogo() {
   return (
     <>
