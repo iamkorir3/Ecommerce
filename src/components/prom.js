@@ -31,6 +31,8 @@ export default function Prom() {
   const [land, setLand] = useState(false);
   const [landd, setLandd] = useState(true);
   const [users, setUsers] = useState({});
+  const [userIn, setuserIn] = useState(false);
+  const [balance, setbBlance] = useState(0);
 
   function createUser(user) {
     setUsers(user);
@@ -56,6 +58,12 @@ export default function Prom() {
   function handleLand() {
     setLandd(false);
   }
+  function onuserIn() {
+    setuserIn(true);
+  }
+  function handleSetBalance(bal) {
+    setbBlance(bal);
+  }
 
   return (
     <div className="prom-container">
@@ -70,7 +78,7 @@ export default function Prom() {
             <ion-icon name="person-outline"></ion-icon> <span>Account</span>
           </button>
         </div>
-        <Promlogo />
+        <Promlogo userIn={userIn} />
         <div className="header">
           <h2 className="heading">AFRICAN DEV'T FUNDS</h2>
           <p style={{ color: "rgb(68, 183, 55)" }}>
@@ -103,6 +111,7 @@ export default function Prom() {
         register={register}
         setRegister={setRegister}
         onland={handleLnding}
+        onuserIn={onuserIn}
         createUser={createUser}
       />
       <LandingPage
@@ -110,6 +119,7 @@ export default function Prom() {
         landd={landd}
         onlandd={handleLand}
         custoName={users}
+        balance={balance}
       >
         <Quizes />
       </LandingPage>
@@ -117,8 +127,16 @@ export default function Prom() {
   );
 }
 
-function Promlogo() {
-  return <img src="/prologo.jpg" className="prom_logo" alt="prologo" />;
+function Promlogo({ userIn }) {
+  return (
+    <>
+      {!userIn ? (
+        <img src="/prologo.jpg" className="prom_logo" alt="prologo" />
+      ) : (
+        ""
+      )}
+    </>
+  );
 }
 
 function ChoosingOption({ home, onregister }) {
@@ -141,7 +159,7 @@ function ChoosingOption({ home, onregister }) {
   );
 }
 
-function Registration({ register, setRegister, onland, createUser }) {
+function Registration({ register, setRegister, onland, createUser, onuserIn }) {
   return (
     <>
       {register ? (
@@ -151,6 +169,7 @@ function Registration({ register, setRegister, onland, createUser }) {
             register={register}
             setRegister={setRegister}
             onland={onland}
+            onuserIn={onuserIn}
           />
         </div>
       ) : (
@@ -160,7 +179,14 @@ function Registration({ register, setRegister, onland, createUser }) {
   );
 }
 
-function Form({ register, setRegister, Onsubmission, onsetName, onland }) {
+function Form({
+  register,
+  setRegister,
+  Onsubmission,
+  onsetName,
+  onland,
+  onuserIn,
+}) {
   const [userEmail, setUserEmail] = useState("");
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
@@ -185,6 +211,7 @@ function Form({ register, setRegister, Onsubmission, onsetName, onland }) {
 
       return;
     }
+    if (country === "") return;
 
     const createUser = {
       name,
@@ -196,6 +223,7 @@ function Form({ register, setRegister, Onsubmission, onsetName, onland }) {
 
     Onsubmission(createUser);
     onland();
+    onuserIn();
   }
 
   return (
@@ -260,14 +288,19 @@ function Form({ register, setRegister, Onsubmission, onsetName, onland }) {
   );
 }
 
-function LandingPage({ land, landd, onlandd, custoName }) {
+function LandingPage({ land, landd, onlandd, custoName, userIn, balance }) {
   const { name, age, country } = custoName;
   // console.log(name);
   return (
     <>
       {land ? (
         <div className="landing_page">
-          <ProfileCusto name={name} country={country} />
+          <ProfileCusto
+            name={name}
+            balance={balance}
+            country={country}
+            userIn={userIn}
+          />
           {landd ? (
             <>
               {" "}
@@ -295,21 +328,31 @@ function LandingPage({ land, landd, onlandd, custoName }) {
   );
 }
 
-function ProfileCusto({ name, country }) {
+function ProfileCusto({ name, country, balance }) {
   return (
-    <div className="custo_container">
-      <div className="custoprof">
-        <div className="profilecusto">
-          <ion-icon name="person-circle-outline"></ion-icon>
-        </div>
-        <h2>
-          {name} , Country: {country}.
+    <div className="Userin">
+      <div className="custo_container">
+        <div className="custoprof">
+          {/* <div className="profilecusto">
+            <ion-icon name="person-circle-outline"></ion-icon>
+          </div> */}
+          <h2>
+            {name}
+            <span>
+              <ion-icon name="checkmark-circle-outline"></ion-icon>
+            </span>
+          </h2>
+          <p className="countrye">Country: {country}.</p>
           <span>
-            <ion-icon name="checkmark-circle-outline"></ion-icon>
+            Balance: <strong>ZMW {balance}</strong>
           </span>
-        </h2>
+        </div>
+        {/* <p>Welcome your Account is Ready</p> */}
       </div>
-      <p>Welcome your Account is Ready</p>
+      <div>
+        <img src="/prologo.jpg" className="prom_logo2" alt="prologo" />
+        <p></p>
+      </div>
     </div>
   );
 }

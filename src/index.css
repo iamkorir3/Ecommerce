@@ -283,16 +283,43 @@ body {
 }
 
 .custo_container {
-  padding: 1rem 2rem;
+  padding: 1rem 0;
+  background-color: rgb(231, 212, 188);
+  background-color: rgb(215, 237, 247);
+  border: 2px solid rgba(0, 0, 0, 0);
+  height: 10rem;
+  box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.3);
+}
+.Userin {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem 0;
+  justify-content: space-between;
+}
+.prom_logo2 {
+  box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.3);
+  width: 20rem;
+  height: 10rem;
+  /* border-radius: 50%; */
+  /* height: 55%; */
 }
 
 .custoprof {
-  display: flex;
+  /* display: flex; */
   align-items: center;
+  width: 18rem;
 }
 
 .custoprof h2 {
   font-size: 2rem;
+  font-weight: 520;
+}
+
+.countrye {
+  margin-left: 0 !important;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 0;
 }
 
 .custoprof h2 span {
@@ -301,6 +328,11 @@ body {
   margin: 1.5rem;
 
   /* background-color: rebeccapurple; */
+}
+
+.custoprof span {
+  font-size: 1.8rem;
+  /* display: flex; */
 }
 .custo_container p {
   font-size: 1.8rem;
