@@ -334,7 +334,10 @@ function LandingPage({
   onSetbalance,
 }) {
   const { name, age, country } = custoName;
-  // console.log(name);
+  const [Finish, setFinish] = useState(false);
+  function onFinish() {
+    setFinish(true);
+  }
   return (
     <>
       {land ? (
@@ -362,7 +365,17 @@ function LandingPage({
               <button onClick={onlandd}>Start Questions</button>
             </>
           ) : (
-            <Quizes onSetbalance={onSetbalance} balance={balance} />
+            <>
+              {!Finish ? (
+                <Quizes
+                  onSetbalance={onSetbalance}
+                  onFinish={onFinish}
+                  balance={balance}
+                />
+              ) : (
+                <CongratsMessage custoName={custoName} />
+              )}{" "}
+            </>
           )}
         </div>
       ) : (
@@ -403,7 +416,33 @@ function ProfileCusto({ name, country, balance }) {
   );
 }
 
-function Quizes({ balance, onSetbalance }) {
+function CongratsMessage({ custoName }) {
+  const { name, age, userEmail, userPhoneNum, country } = custoName;
+  return (
+    <div className="congra_message">
+      <h2> 𝑪𝒐𝒏𝒈𝒓𝒂𝒕𝒖𝒍𝒂𝒕𝒊𝒐𝒏! For Reaching the last Step</h2>
+      <p>
+        <p className="userdetails">
+          <p> NAME: {name}.</p> <p>PHONE NUMBER: {userPhoneNum}</p>{" "}
+          <p>EMAIL: {userEmail}. </p>
+          <p>COUNTRY: {country}</p>
+        </p>
+        *COUNTRY: ZAMBIA* *You are now registered as a permanent beneficiary of
+        GIVE DIRECT.* *✅ You are about to receive ZMW 20,000 𝒇𝒓𝒐𝒎 GIVE DIRECT
+        FOUNDATION PROMOTION* *We congratulate you for contacting and making
+        your application.*🎉 *Ensure to use these money in an important
+        services.* *📌Now pay ZMW 850 for activation fee and immediately receive
+        Activation code to unlock your promotion Awards Funds 🎁*
+        𝕔𝕠𝕟𝕘𝕣𝕒𝕥𝕦𝕝𝕒𝕥𝕚𝕠𝕟🥳 *To continue REPLY WITH* *1.READY* *2.NOT READY* 📌
+        *Your promotion is to be dispersed to your MTN/AIRTEL line within 5
+        minutes after Activation.*
+      </p>
+      <link></link>
+    </div>
+  );
+}
+
+function Quizes({ balance, onSetbalance, onFinish }) {
   const [currentId, setCurrentId] = useState(1);
   const [price, setprice] = useState(false);
 
@@ -472,7 +511,7 @@ function Quizes({ balance, onSetbalance }) {
             </div>
           ))}
           <button
-            // onClick={}
+            onClick={onFinish}
             className="btn_next"
             style={{
               backgroundColor: "rgb(11, 11, 45)",
