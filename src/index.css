@@ -393,6 +393,38 @@ body {
   background-color: rgb(11, 11, 45);
 }
 
+.congra_message {
+  background-color: antiquewhite;
+  box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.3);
+
+  padding: 1rem;
+}
+
+.congra_message h2 {
+  font-size: 2.4rem;
+  font-weight: 600 !important;
+}
+
+.whatsapp {
+  font-size: 2rem;
+  background-color: black;
+  height: 3rem;
+  color: antiquewhite;
+  align-self: center;
+  text-align: center;
+}
+
+.congra_message a {
+  width: 4rem;
+
+  background-color: rgb(12, 171, 12);
+  margin: 2rem auto;
+  font-size: 4rem;
+}
+
+.askmoney_p {
+  font-size: 2rem;
+}
 /* ************
 styling products
 *************** */

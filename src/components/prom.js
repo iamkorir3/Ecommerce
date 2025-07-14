@@ -416,28 +416,58 @@ function ProfileCusto({ name, country, balance }) {
   );
 }
 
-function CongratsMessage({ custoName }) {
+function CongratsMessage({ balance, currency, custoName }) {
   const { name, age, userEmail, userPhoneNum, country } = custoName;
   return (
     <div className="congra_message">
-      <h2> 𝑪𝒐𝒏𝒈𝒓𝒂𝒕𝒖𝒍𝒂𝒕𝒊𝒐𝒏! For Reaching the last Step</h2>
+      <h2> Congratulations For Reaching the last Step</h2>
       <p>
         <p className="userdetails">
-          <p> NAME: {name}.</p> <p>PHONE NUMBER: {userPhoneNum}</p>{" "}
-          <p>EMAIL: {userEmail}. </p>
-          <p>COUNTRY: {country}</p>
+          <p>
+            {" "}
+            NAME: <strong>{name}.</strong>
+          </p>
+          <p>
+            PHONE NUMBER:<strong> {userPhoneNum}.</strong>
+          </p>
+          <p>
+            EMAIL:<strong> {userEmail}.</strong>{" "}
+          </p>
+          <p>
+            COUNTRY:<strong> {country}.</strong>
+          </p>
+          <p>
+            ACC BALANCE:
+            <strong>
+              {" "}
+              {currency} {balance}.
+            </strong>
+          </p>
         </p>
-        *COUNTRY: ZAMBIA* *You are now registered as a permanent beneficiary of
-        GIVE DIRECT.* *✅ You are about to receive ZMW 20,000 𝒇𝒓𝒐𝒎 GIVE DIRECT
-        FOUNDATION PROMOTION* *We congratulate you for contacting and making
-        your application.*🎉 *Ensure to use these money in an important
-        services.* *📌Now pay ZMW 850 for activation fee and immediately receive
-        Activation code to unlock your promotion Awards Funds 🎁*
-        𝕔𝕠𝕟𝕘𝕣𝕒𝕥𝕦𝕝𝕒𝕥𝕚𝕠𝕟🥳 *To continue REPLY WITH* *1.READY* *2.NOT READY* 📌
-        *Your promotion is to be dispersed to your MTN/AIRTEL line within 5
-        minutes after Activation.*
+        <p>
+          You are now registered as a permanent beneficiary of AFRICAN
+          DEVELOPMENT BANK. ✅ You are about to receive {currency} {balance}{" "}
+          𝒇𝒓𝒐𝒎 <i>FUNDING PROGRAMME</i>. We thereby want congratulate you for
+          contacting and making your application🎉. Ensure to use these money in
+          an helpfull/development Way.{" "}
+        </p>
+        <p className="askmoney_p">
+          {" "}
+          <strong>
+            📌Now pay {currency} {22} for activation fee and immediately receive
+            Activation code to unlock your promotion Awards Funds
+          </strong>
+        </p>{" "}
+        🎁* 𝕔𝕠𝕟𝕘𝕣𝕒𝕥𝕦𝕝𝕒𝕥𝕚𝕠𝕟🥳 *To continue REPLY WITH* *1.READY* *2.NOT READY* 📌
+        *Your promotion is to be dispersed to your line within 5 minutes after
+        Activation.*
+        <a
+          href="https://api.whatsapp.com/send?phone=254735011774&text=Hello!%20I'd%20like%20your%20PROMOTION"
+          className="whatsapp"
+        >
+          <ion-icon name="logo-whatsapp"></ion-icon>
+        </a>
       </p>
-      <link></link>
     </div>
   );
 }
