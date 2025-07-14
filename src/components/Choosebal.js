@@ -1,1 +1,1 @@
-function Choosebal() {}
+export default function Choosebal() {}

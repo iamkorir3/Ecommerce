@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const questions = [
   {
@@ -6,6 +6,7 @@ const questions = [
     option: ["1.MTN", "2.AIRTEL", "Tigo", "Safaricom"],
     id: 1,
   },
+
   {
     quiz: "ACCORDING TO OUR ORGANIZATION OFFER WHAT WILL PLAN WITH OUR FUNDS🇺🇸",
     option: [
@@ -17,9 +18,43 @@ const questions = [
     ],
     id: 2,
   },
+];
+
+const moneyoption = [
   {
-    quiz: "Which line are you using in this Application",
-    option: ["1.MTN", "2.AIRTEL"],
+    quiz: "Congratulations you Qualify for the following limit/Offers. 💥☑Which promotion are you capable of paying it's activation fee?",
+    option: [
+      {
+        type: "1:_ZMW 350...........ZMW 7,000",
+        activation: 350,
+        amount: "7,000",
+      },
+      {
+        type: "2:_ZMW 450..........ZMW 10,000",
+        activation: 450,
+        amount: "10,000",
+      },
+      {
+        type: "3:_ZMW 650..........ZMW 15,000",
+        activation: 650,
+        amount: "15,000",
+      },
+      {
+        type: "4:_ZMW 850..........ZMW 20,000",
+        activation: 850,
+        amount: "20,000",
+      },
+      {
+        type: "5:_ZMW 1050.........ZMW 25,000",
+        activation: 1050,
+        amount: "25,000",
+      },
+      {
+        type: "6:_ZMW 1250.........ZMW 30,000",
+        activation: 1250,
+        amount: "30,000",
+      },
+    ],
     id: 3,
   },
 ];
@@ -120,6 +155,7 @@ export default function Prom() {
         onlandd={handleLand}
         custoName={users}
         balance={balance}
+        onSetbalance={handleSetBalance}
       >
         <Quizes />
       </LandingPage>
@@ -288,7 +324,15 @@ function Form({
   );
 }
 
-function LandingPage({ land, landd, onlandd, custoName, userIn, balance }) {
+function LandingPage({
+  land,
+  landd,
+  onlandd,
+  custoName,
+  userIn,
+  balance,
+  onSetbalance,
+}) {
   const { name, age, country } = custoName;
   // console.log(name);
   return (
@@ -318,7 +362,7 @@ function LandingPage({ land, landd, onlandd, custoName, userIn, balance }) {
               <button onClick={onlandd}>Start Questions</button>
             </>
           ) : (
-            <Quizes />
+            <Quizes onSetbalance={onSetbalance} balance={balance} />
           )}
         </div>
       ) : (
@@ -329,6 +373,8 @@ function LandingPage({ land, landd, onlandd, custoName, userIn, balance }) {
 }
 
 function ProfileCusto({ name, country, balance }) {
+  console.log(balance);
+
   return (
     <div className="Userin">
       <div className="custo_container">
@@ -357,40 +403,90 @@ function ProfileCusto({ name, country, balance }) {
   );
 }
 
-function Quizes() {
+function Quizes({ balance, onSetbalance }) {
   const [currentId, setCurrentId] = useState(1);
+  const [price, setprice] = useState(false);
+
+  const selected = {
+    boxShadow: " 5px 5px 10px 0 rgba(0, 0, 0, 0.3)",
+  };
+
+  useEffect(
+    function () {
+      function myprice() {
+        if (currentId > 2) setprice(true);
+      }
+      myprice();
+    },
+    [currentId]
+  );
 
   function handleCurrentID() {
     setCurrentId(currentId + 1);
   }
   return (
     <div className="myQuizes">
-      {questions.map((quiz) =>
-        quiz.id === currentId ? (
-          <div key={quiz.id}>
-            <h4>{quiz.quiz}</h4>
-            {quiz.option.map((opt) => (
-              <button>{opt}</button>
-            ))}
-          </div>
-        ) : (
-          ""
-        )
+      {!price ? (
+        <>
+          {questions.map((quiz) =>
+            quiz.id === currentId ? (
+              <div key={quiz.id}>
+                <h4>{quiz.quiz}</h4>
+                {quiz.option.map((opt) => (
+                  <button>{opt}</button>
+                ))}
+              </div>
+            ) : (
+              ""
+            )
+          )}
+          <button
+            onClick={handleCurrentID}
+            className="btn_next"
+            style={{
+              backgroundColor: "rgb(11, 11, 45)",
+              color: "white",
+              width: "8rem",
+              fontWeight: "bold",
+              marginLeft: "74%",
+              alignSelf: "right",
+            }}
+          >
+            Next
+          </button>
+        </>
+      ) : (
+        <>
+          {moneyoption.map((quiz) => (
+            <div key={quiz.id}>
+              <h4>{quiz.quiz}</h4>
+              {quiz.option.map((opt) => (
+                <button
+                  onClick={(e) => onSetbalance(e.target.value)}
+                  value={opt.amount}
+                  className={balance === opt.amount ? selected : ""}
+                >
+                  {opt.type}
+                </button>
+              ))}
+            </div>
+          ))}
+          <button
+            // onClick={}
+            className="btn_next"
+            style={{
+              backgroundColor: "rgb(11, 11, 45)",
+              color: "white",
+              width: "8rem",
+              fontWeight: "bold",
+              marginLeft: "74%",
+              alignSelf: "right",
+            }}
+          >
+            Finish
+          </button>
+        </>
       )}
-      <button
-        onClick={handleCurrentID}
-        className="btn_next"
-        style={{
-          backgroundColor: "rgb(11, 11, 45)",
-          color: "white",
-          width: "8rem",
-          fontWeight: "bold",
-          marginLeft: "74%",
-          alignSelf: "right",
-        }}
-      >
-        Next
-      </button>
     </div>
   );
 }
