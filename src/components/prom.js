@@ -69,6 +69,7 @@ export default function Prom() {
   const [userIn, setuserIn] = useState(false);
   const [balance, setbBlance] = useState(0);
   const [currency, setcurrency] = useState("");
+  const [menuOpen, setmenuOpen] = useState(false);
 
   function setUserCurrency() {
     console.log(users.country);
@@ -123,6 +124,9 @@ export default function Prom() {
   function onuserIn() {
     setuserIn(true);
   }
+  function onMenuOpen() {
+    setmenuOpen(menuOpen === false ? true : false);
+  }
   function handleSetBalance(bal) {
     setbBlance(bal);
   }
@@ -131,7 +135,7 @@ export default function Prom() {
     <div className="prom-container">
       <div>
         <div className="top_nav">
-          <button className="nav_btn">
+          <button onClick={onMenuOpen} className="nav_btn">
             <ion-icon name="menu-outline"></ion-icon>
           </button>
 
@@ -188,7 +192,26 @@ export default function Prom() {
       >
         <Quizes />
       </LandingPage>
+      <MenuSide menuOpen={menuOpen} />
     </div>
+  );
+}
+
+function MenuSide({ menuOpen }) {
+  return (
+    <>
+      {menuOpen ? (
+        <div className="menu_containerr">
+          <button>Profile</button>
+          <button>help</button>
+          <button>Rate us</button>
+          <button>About us</button>
+          <button>Invite People</button>
+        </div>
+      ) : (
+        ""
+      )}
+    </>
   );
 }
 
