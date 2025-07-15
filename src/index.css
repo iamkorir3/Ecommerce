@@ -17,6 +17,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
 html {
   font-size: 62.5%;
 }
@@ -397,7 +398,7 @@ body {
   background-color: antiquewhite;
   box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.3);
 
-  padding: 1rem;
+  padding: 1rem 0.5rem;
 }
 
 .congra_message h2 {
@@ -415,8 +416,9 @@ body {
 }
 
 .congra_message a {
-  width: 4rem;
-
+  margin: 1rem;
+  width: 100%;
+  text-align: center;
   background-color: rgb(12, 171, 12);
   margin: 2rem auto;
   font-size: 4rem;

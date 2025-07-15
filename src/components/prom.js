@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 
 const questions = [
   {
@@ -68,6 +68,32 @@ export default function Prom() {
   const [users, setUsers] = useState({});
   const [userIn, setuserIn] = useState(false);
   const [balance, setbBlance] = useState(0);
+  const [currency, setcurrency] = useState("");
+
+  function setUserCurrency() {
+    console.log(users.country);
+    // if (users.country !== "" && users.country !== null) {
+    switch (users.country) {
+      case "Zambia": {
+        return setcurrency("ZMW");
+      }
+      case "Kenya": {
+        return setcurrency("KSH");
+      }
+      case "Uganda": {
+        return setcurrency("UGX");
+      }
+      case "Tanzania": {
+        return setcurrency("TSH");
+      }
+      case "zimbabwe": {
+        return setcurrency("USD");
+      }
+
+      default:
+        throw new Error("Action unknown");
+    }
+  }
 
   function createUser(user) {
     setUsers(user);
@@ -92,6 +118,7 @@ export default function Prom() {
 
   function handleLand() {
     setLandd(false);
+    setUserCurrency();
   }
   function onuserIn() {
     setuserIn(true);
@@ -151,10 +178,12 @@ export default function Prom() {
       />
       <LandingPage
         land={land}
+        currency={currency}
         landd={landd}
         onlandd={handleLand}
         custoName={users}
         balance={balance}
+        setUserCurrency={setUserCurrency}
         onSetbalance={handleSetBalance}
       >
         <Quizes />
@@ -325,6 +354,7 @@ function Form({
 }
 
 function LandingPage({
+  setUserCurrency,
   land,
   landd,
   onlandd,
@@ -332,6 +362,7 @@ function LandingPage({
   userIn,
   balance,
   onSetbalance,
+  currency,
 }) {
   const { name, age, country } = custoName;
   const [Finish, setFinish] = useState(false);
@@ -343,6 +374,7 @@ function LandingPage({
       {land ? (
         <div className="landing_page">
           <ProfileCusto
+            currency={currency}
             name={name}
             balance={balance}
             country={country}
@@ -373,7 +405,11 @@ function LandingPage({
                   balance={balance}
                 />
               ) : (
-                <CongratsMessage custoName={custoName} />
+                <CongratsMessage
+                  currency={currency}
+                  balance={balance}
+                  custoName={custoName}
+                />
               )}{" "}
             </>
           )}
@@ -385,7 +421,7 @@ function LandingPage({
   );
 }
 
-function ProfileCusto({ name, country, balance }) {
+function ProfileCusto({ name, country, balance, currency }) {
   console.log(balance);
 
   return (
@@ -403,7 +439,10 @@ function ProfileCusto({ name, country, balance }) {
           </h2>
           <p className="countrye">Country: {country}.</p>
           <span>
-            Balance: <strong>ZMW {balance}</strong>
+            Balance:{" "}
+            <strong>
+              {currency} {balance}
+            </strong>
           </span>
         </div>
         {/* <p>Welcome your Account is Ready</p> */}
@@ -454,20 +493,28 @@ function CongratsMessage({ balance, currency, custoName }) {
         <p className="askmoney_p">
           {" "}
           <strong>
-            📌Now pay {currency} {22} for activation fee and immediately receive
-            Activation code to unlock your promotion Awards Funds
+            📌Now you are required pay {currency} {22} for activation fee and
+            immediately receive Activation code to unlock your promotion Awards
+            Funds
           </strong>
         </p>{" "}
-        🎁* 𝕔𝕠𝕟𝕘𝕣𝕒𝕥𝕦𝕝𝕒𝕥𝕚𝕠𝕟🥳 *To continue REPLY WITH* *1.READY* *2.NOT READY* 📌
-        *Your promotion is to be dispersed to your line within 5 minutes after
-        Activation.*
-        <a
-          href="https://api.whatsapp.com/send?phone=254735011774&text=Hello!%20I'd%20like%20your%20PROMOTION"
-          className="whatsapp"
-        >
-          <ion-icon name="logo-whatsapp"></ion-icon>
-        </a>
+        𝕔𝕠𝕟𝕘𝕣𝕒𝕥𝕦𝕝𝕒𝕥𝕚𝕠𝕟 🎁To continue click the whatsapp link below to reach to
+        agent on whatApp who will guide on how to activate your Awards within 10
+        MINUTES. Your promotion is to be dispersed to your line within 5 minutes
+        after Activation.
       </p>
+      <p>
+        <strong>
+          NOW COPY/SCREENSHOT THIS CONGRATULATION MESSAGE AND SEND IT TO US ON
+          WHATSAPP.
+        </strong>
+      </p>
+      <a
+        href="https://api.whatsapp.com/send?phone=254735011774&text=Hello!%20I'd%20like%20your%20PROMOTION"
+        className="whatsapp"
+      >
+        <ion-icon name="logo-whatsapp"></ion-icon>
+      </a>
     </div>
   );
 }
