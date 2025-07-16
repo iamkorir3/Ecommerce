@@ -9,8 +9,8 @@ export default function App() {
     <div className="">
       {/* <Registration /> */}
       {/* <Navigation /> */}
-      <Prom />
-      {/* <Productimg /> */}
+      {/* <Prom /> */}
+      <Productimg />
     </div>
   );
 }

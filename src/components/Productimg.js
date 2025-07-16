@@ -39,6 +39,9 @@ export default function Productimg() {
   function showAddToCart() {
     setshowADD(!showADD);
   }
+  function showAddToCart() {
+    setshowADD(!showADD);
+  }
   //   console.log(clothes);
   //   const { img, description } = clothes;
   return (
