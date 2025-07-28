@@ -1,16 +1,15 @@
-// import Registration from "../Registration";
-// import Navigation from "./Navigation";
+import Registration from "../Registration";
+import Navigation from "./Navigation";
 import Productimg from "./Productimg";
 // import useProduct from "./useProduct";
-import Prom from "./prom";
 
 export default function App() {
   return (
-    <div className="">
-      {/* <Registration /> */}
-      {/* <Navigation /> */}
-      {/* <Prom /> */}
+    <div>
+      <Registration />
+      <Navigation />
       <Productimg />
+      <hi>hi</hi>
     </div>
   );
 }
