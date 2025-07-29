@@ -19,6 +19,7 @@ const initialclothes = [
 
 export default function Productimg() {
   const [clothes, setClothes] = useState([]);
+
   const [showADD, setshowADD] = useState(false);
 
   useEffect(function () {

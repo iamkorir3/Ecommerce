@@ -6,7 +6,7 @@ import Productimg from "./Productimg";
 export default function App() {
   return (
     <div>
-      <Registration />
+      {/* <Registration /> */}
       <Navigation />
       <Productimg />
       <hi>hi</hi>
