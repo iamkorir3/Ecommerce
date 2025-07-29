@@ -172,8 +172,12 @@ MENU
 }
 
 /* **************
-prom
- */
+cart_container
+prom*/
+.cart_container {
+  position: absolute;
+  background-color: red;
+}
 
 /* ************
 styling products
