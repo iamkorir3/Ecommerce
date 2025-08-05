@@ -1,3 +1,4 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Registration from "../Registration";
 import Navigation from "./Navigation";
 import Productimg from "./Productimg";
@@ -6,10 +7,15 @@ import Productimg from "./Productimg";
 export default function App() {
   return (
     <div>
-      {/* <Registration /> */}
-      <Navigation />
-      <Productimg />
-      <hi>hi</hi>
+      <BrowserRouter>
+        <Routes>
+          {/* <Registration /> */}
+          <Route path="hel" element={<Productimg />} />
+          <Route path="hel" element={<Registration />} />
+          <Navigation />
+          <Productimg />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
